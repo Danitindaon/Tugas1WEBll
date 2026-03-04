@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Detail Produk</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="container mx-auto flex-1 mt-6 px-4">
+
+    <!-- PRODUK DITEMUKAN -->
+    <div th:if="${product != null}">
+
+        <!-- Breadcrumb -->
+        <nav class="text-sm text-gray-500 mb-4">
+            <ol class="flex items-center space-x-2">
+                <li>
+                    <a th:href="@{/}" class="hover:underline text-blue-600">Home</a>
+                </li>
+                <li>/</li>
+                <li>
+                    <a th:href="@{/products}" class="hover:underline text-blue-600">Produk</a>
+                </li>
+                <li>/</li>
+                <li class="text-gray-700 font-medium"
+                    th:text="${product.name}">
+                    Nama
+                </li>
+            </ol>
+        </nav>
+
+        <h1 class="text-3xl font-semibold mb-6"
+            th:text="${product.name}">
+            Nama Produk
+        </h1>
+
+        <!-- Card -->
+        <div class="bg-white shadow-md rounded-xl p-6 max-w-lg">
+
+            <table class="w-full text-sm">
+                <tr class="border-b">
+                    <th class="text-left py-2 w-32 font-medium">ID</th>
+                    <td th:text="${product.id}" class="py-2">1</td>
+                </tr>
+
+                <tr class="border-b">
+                    <th class="text-left py-2 font-medium">Nama</th>
+                    <td th:text="${product.name}" class="py-2">Nama</td>
+                </tr>
+
+                <tr class="border-b">
+                    <th class="text-left py-2 font-medium">Kategori</th>
+                    <td class="py-2">
+                        <a th:href="@{/products/category/{cat}(cat=${product.category})}"
+                           th:text="${product.category}"
+                           class="text-blue-600 hover:underline">
+                            Kategori
+                        </a>
+                    </td>
+                </tr>
+
+                <tr class="border-b">
+                    <th class="text-left py-2 font-medium">Harga</th>
+                    <td class="py-2"
+                        th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">
+                        Rp 0
+                    </td>
+                </tr>
+
+                <tr>
+                    <th class="text-left py-2 font-medium">Stok</th>
+                    <td class="py-2 flex items-center gap-2">
+                        <span th:text="${product.stock}">0</span>
+
+                        <span th:if="${product.stock < 20}"
+                              class="px-2 py-1 text-xs bg-red-100 text-red-600 rounded-full">
+                            Stok Menipis!
+                        </span>
+
+                        <span th:if="${product.stock >= 20}"
+                              class="px-2 py-1 text-xs bg-green-100 text-green-600 rounded-full">
+                            Tersedia
+                        </span>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- PRODUK TIDAK DITEMUKAN -->
+    <div th:if="${product == null}"
+         class="bg-red-100 text-red-700 p-6 rounded-lg shadow-md max-w-lg">
+
+        <h4 class="text-lg font-semibold mb-2">
+            Produk Tidak Ditemukan
+        </h4>
+
+        <p th:text="${error}">Error message</p>
+    </div>
+
+    <!-- BUTTON KEMBALI -->
+    <div class="mt-6">
+        <a th:href="@{/products}"
+           class="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition">
+            Kembali ke Daftar
+        </a>
+    </div>
+
+</div>
+
+<div th:replace="~{fragments/layout :: footer}"></div>
+
+</body>
+</html>

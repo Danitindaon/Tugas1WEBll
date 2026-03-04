@@ -1,18 +1,16 @@
-package com.example.springmvclab.model;
+package com.example.spring_mvc_lab.model;
+
 
 public class Product {
-
     private Long id;
     private String name;
     private String category;
     private double price;
     private int stock;
 
-    // Constructor kosong (WAJIB untuk Spring / form binding)
     public Product() {
     }
 
-    // Constructor dengan parameter
     public Product(Long id, String name, String category, double price, int stock) {
         this.id = id;
         this.name = name;
@@ -21,7 +19,7 @@ public class Product {
         this.stock = stock;
     }
 
-    // Getter dan Setter
+    // Getter & Setter
 
     public Long getId() {
         return id;

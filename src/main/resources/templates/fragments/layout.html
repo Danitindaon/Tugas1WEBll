@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- ================= NAVBAR ================= -->
+<nav th:fragment="navbar"
+     class="bg-gray-900 text-white shadow-md">
+
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Logo / Brand -->
+            <a th:href="@{/}"
+               class="text-lg font-semibold hover:text-gray-300 transition">
+                Spring MVC Lab
+            </a>
+
+            <!-- Menu -->
+            <div class="flex space-x-6 text-sm font-medium">
+                <a th:href="@{/}"
+                   class="hover:text-gray-300 transition">
+                    Home
+                </a>
+
+                <a th:href="@{/products}"
+                   class="hover:text-gray-300 transition">
+                    Produk
+                </a>
+
+                <a th:href="@{/about}"
+                   class="hover:text-gray-300 transition">
+                    About
+                </a>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!-- ================= FOOTER ================= -->
+<footer th:fragment="footer"
+        class="bg-gray-100 mt-10 py-6 border-t">
+
+    <div class="container mx-auto px-4 text-center">
+        <p class="text-gray-500 text-sm">
+            Spring MVC Lab &copy; 2026 | WEB-202 Week 4
+        </p>
+    </div>
+
+</footer>
+
+</html>

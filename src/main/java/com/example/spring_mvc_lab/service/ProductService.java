@@ -1,6 +1,6 @@
-package com.example.springmvclab.service;
+package com.example.spring_mvc_lab.service;
 
-import com.example.springmvclab.model.Product;
+import com.example.spring_mvc_lab.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class ProductService {
 
-    private final List<Product> products = new ArrayList<>();
+    private static final List<Product> products = new ArrayList<>();
 
     public ProductService() {
         // Data dummy — nanti akan diganti database di Week JPA
@@ -26,7 +26,7 @@ public class ProductService {
         return products;
     }
 
-    public Optional<Product> findById(Long id) {
+    public static Optional<Product> findById(Long id) {
         return products.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();

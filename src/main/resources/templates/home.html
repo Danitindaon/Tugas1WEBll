@@ -3,29 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">Home</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/}" th:text="${title}">App Name</a>
-    </div>
-</nav>
+<body class="min-h-screen flex flex-col bg-gray-50">
 
-<div class="container mt-4">
-    <div class="jumbotron p-4 bg-light rounded">
-        <h1 class="display-5" th:text="${title}">Title</h1>
-        <p class="lead" th:text="${description}">Description</p>
-        <hr>
-        <p>Navigasi:</p>
-        <a th:href="@{/products}" class="btn btn-primary me-2">Daftar Produk</a>
-        <a th:href="@{/products/category/Elektronik}" class="btn btn-outline-primary me-2">Elektronik</a>
-        <a th:href="@{/products/category/Buku}" class="btn btn-outline-primary me-2">Buku</a>
-        <a th:href="@{/products/category/Makanan}" class="btn btn-outline-primary">Makanan</a>
+<!-- Navbar Fragment -->
+<div th:replace="~{fragments/layout :: navbar}"></div>
+
+<div class="container mx-auto flex-1 mt-6 px-4">
+    <div class="p-6 bg-gray-100 rounded-xl shadow-sm">
+
+        <h1 class="text-3xl font-semibold mb-2"
+            th:text="${title}">Title</h1>
+
+        <p class="text-lg text-gray-600 mb-4"
+           th:text="${description}">Description</p>
+
+        <hr class="my-4 border-gray-300">
+
+        <h5 class="text-lg font-medium mb-3">
+            Jelajahi Produk:
+        </h5>
+
+        <div class="flex flex-wrap gap-3">
+            <a th:href="@{/products}"
+               class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                Semua Produk
+            </a>
+
+            <a th:href="@{/products/category/Elektronik}"
+               class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
+                Elektronik
+            </a>
+
+            <a th:href="@{/products/category/Buku}"
+               class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
+                Buku
+            </a>
+
+            <a th:href="@{/products/category/Makanan}"
+               class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition">
+                Makanan
+            </a>
+        </div>
+
     </div>
 </div>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/layout :: footer}"></div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.example.springmvclab.controller;
+package com.example.spring_mvc_lab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
